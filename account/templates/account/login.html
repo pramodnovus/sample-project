@@ -1,0 +1,73 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+
+{% block title %} login {% endblock %}
+
+{% block head %}
+  
+
+{% endblock %}
+
+{% block content %}
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                
+                </div>
+                <form class="login100-form validate-form" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <span class="login100-form-title">
+                        Sample User Login
+                    </span>
+                    <div class="x_content bs-example-popovers">
+                    <!-- Display messages if any -->
+                       
+                    </div>    
+                    {% for field in form %}
+                    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                      {{ field.label_tag }}
+                      <div style="border: 1px solid #ccc; padding: 5px;">
+                        {{ field }}
+                      </div>
+                      {% if field.errors %}
+                        <span style="color: red;">{{ field.errors.as_text }}</span>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                
+                    <div class="text-center p-t-12">
+                        <span class="txt1">
+                            Forgot
+                        </span>
+                        <!-- Replace '#' with the actual URL for password reset -->
+                        <a class="txt2" href="#">
+                            Password?
+                        </a>
+                    </div>
+                
+                    <div class="text-center p-t-136">
+                        <a class="txt2" href="{% url 'register' %}">
+                            Create your Account
+                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/tiltinganimation.js' %}"></script>
+
+{% endblock %}

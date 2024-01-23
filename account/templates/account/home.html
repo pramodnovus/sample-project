@@ -1,0 +1,30 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+
+{% block title %} home {% endblock %}
+
+{% block head %}
+  
+
+{% endblock %}
+
+{% block content %}
+    <div class="limiter">
+        {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
+      {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}
